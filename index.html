@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Real Motos | Catálogo & Vitrine Oficial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <!-- Font Awesome 6 Pro Vector Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-slate-100/70 text-slate-800 flex flex-col min-h-screen pb-32 font-sans selection:bg-orange-500 selection:text-white">
+
+  <!-- Premium Header -->
+  <header class="bg-[#15171c] text-white pt-4 pb-4 px-4 shadow-xl sticky top-0 z-30 border-b border-white/10 backdrop-blur-md">
+    <div class="max-w-3xl mx-auto space-y-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-orange-500 via-amber-500 to-orange-600 flex items-center justify-center text-white text-xl shadow-lg shadow-orange-500/25 shrink-0 ring-2 ring-white/15">
+            <i class="fa-solid fa-motorcycle"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h1 class="text-lg md:text-xl font-black tracking-tight text-white leading-tight">
+                Real Motos
+              </h1>
+              <span class="bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-[10px] font-extrabold px-2 py-0.5 rounded-full flex items-center gap-1">
+                <i class="fa-solid fa-circle-check text-[9px]"></i> Loja Verificada
+              </span>
+            </div>
+            <p class="text-[11px] text-slate-400 font-medium">Peças, Acessórios e Oficina Mecânica</p>
+          </div>
+        </div>
+
+        {/* Compact GPS & Status Badge */}
+        <div class="flex flex-col items-end text-right gap-1">
+          <button
+            type="button"
+            onclick="openGpsModal()"
+            class="px-3 py-1.5 rounded-xl bg-orange-500/15 hover:bg-orange-500/25 active:scale-95 text-orange-400 border border-orange-500/40 text-xs font-black flex items-center gap-1.5 shadow-xs transition cursor-pointer"
+          >
+            <i class="fa-solid fa-location-arrow text-[11px]"></i>
+            <span>GPS / Como Chegar</span>
+          </button>
+          <span class="text-emerald-400 text-[11px] font-bold flex items-center gap-1">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping inline-block"></span> Aberto agora
+          </span>
+        </div>
+      </div>
+
+      <!-- Address Bar with 1-Click GPS -->
+      <div onclick="openGpsModal()" class="flex items-center justify-between px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-slate-300 cursor-pointer transition">
+        <div class="flex items-center gap-2 truncate">
+          <i class="fa-solid fa-location-dot text-orange-400 shrink-0"></i>
+          <span class="truncate font-medium">Av. dos Bandeirantes, 1500 - Vila Olímpia, São Paulo - SP</span>
+        </div>
+        <span class="text-orange-400 text-xs font-bold shrink-0 pl-2 flex items-center gap-1">
+          <span>Abrir Mapa</span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+        </span>
+      </div>
+
+      <!-- Search Input -->
+      <div class="relative pt-0.5">
+        <i class="fa-solid fa-magnifying-glass text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 text-xs"></i>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Buscar peça, óleo, pneu, pastilha, capacete..."
+          class="w-full bg-white/10 text-white placeholder-slate-400 border border-white/15 rounded-2xl pl-9 pr-9 py-2.5 text-xs sm:text-sm focus:outline-none focus:bg-white focus:text-slate-900 focus:placeholder-slate-400 focus:border-orange-500 transition shadow-inner"
+        />
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-3xl mx-auto px-3.5 py-4 w-full flex-1 space-y-4">
+    <!-- Category Navigation -->
+    <section class="space-y-2">
+      <div class="flex items-center justify-between px-1">
+        <h3 class="text-xs font-black text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+          <i class="fa-solid fa-layer-group text-orange-500"></i> Categorias
+        </h3>
+      </div>
+      <div id="categoryContainer" class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar pt-0.5"></div>
+    </section>
+
+    <!-- Highlight Banner -->
+    <div class="bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 text-white p-4 sm:p-5 rounded-3xl shadow-lg flex items-center justify-between gap-3 relative overflow-hidden">
+      <div class="space-y-1 relative z-10">
+        <span class="bg-black/25 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full inline-flex items-center gap-1">
+          <i class="fa-solid fa-fire text-amber-300"></i> OFERTAS DA SEMANA
+        </span>
+        <h2 class="text-base sm:text-lg font-black leading-tight">Peças & Acessórios com Entrega Rápida</h2>
+        <p class="text-xs text-orange-100 font-medium">Pneus, óleos, freios, baterias e kits de transmissão a pronta entrega.</p>
+      </div>
+      <div class="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center shrink-0 text-3xl shadow-inner text-white">
+        <i class="fa-solid fa-boxes-stacked"></i>
+      </div>
+    </div>
+
+    <!-- Products Header -->
+    <div class="flex items-center justify-between px-1 pt-1">
+      <h3 class="text-sm font-black text-slate-900 uppercase tracking-wide flex items-center gap-1.5">
+        <i class="fa-solid fa-box-open text-orange-500"></i> Produtos & Peças
+      </h3>
+      <span id="productCount" class="text-xs text-slate-500 font-semibold">0 itens</span>
+    </div>
+
+    <!-- Responsive Grid -->
+    <div id="productsGrid" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4"></div>
+  </main>
+
+  <!-- Floating Mobile WhatsApp Bar -->
+  <div id="floatingBar" class="fixed bottom-4 left-0 right-0 px-4 z-40 hidden">
+    <div class="max-w-2xl mx-auto bg-[#15171c]/95 backdrop-blur-md text-white border border-white/20 rounded-3xl p-3 shadow-2xl flex items-center justify-between gap-3">
+      <div onclick="toggleCartDrawer(true)" class="flex items-center gap-3 cursor-pointer pl-1">
+        <div class="w-12 h-12 rounded-2xl bg-orange-500 flex items-center justify-center text-white text-lg shadow-md shadow-orange-500/30 relative shrink-0">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span id="cartBadge" class="absolute -top-1.5 -right-1.5 w-5 h-5 bg-white text-orange-600 text-[10px] font-black rounded-full flex items-center justify-center shadow-xs">0</span>
+        </div>
+        <div>
+          <span id="cartCountText" class="text-[11px] text-slate-300 font-medium block">0 itens</span>
+          <span id="cartTotalText" class="text-base font-black text-white leading-tight font-mono">R$ 0,00</span>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        onclick="toggleCartDrawer(true)"
+        class="bg-[#25d366] hover:bg-emerald-500 active:scale-[0.97] text-white font-black text-xs sm:text-sm px-4 sm:px-5 py-3 rounded-2xl shadow-lg shadow-emerald-500/25 flex items-center gap-2 transition cursor-pointer"
+      >
+        <i class="fa-brands fa-whatsapp text-lg"></i>
+        <span>Ver Pedido</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- GPS Modal Dialog -->
+  <div id="gpsModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-xs hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-5 shadow-2xl border border-slate-200 space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-10 h-10 rounded-2xl bg-orange-100 text-orange-600 flex items-center justify-center text-base">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <div>
+            <h3 class="font-extrabold text-sm text-slate-900">Real Motos</h3>
+            <p class="text-[11px] text-slate-500">Traçar rota GPS para a oficina</p>
+          </div>
+        </div>
+        <button onclick="closeGpsModal()" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 font-bold text-xs flex items-center justify-center">✕</button>
+      </div>
+
+      <div class="p-3 bg-slate-50 border border-slate-200 rounded-2xl text-xs text-slate-700 space-y-1">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Endereço da Loja:</span>
+        <p class="font-bold text-slate-900 leading-snug">Av. dos Bandeirantes, 1500 - Vila Olímpia, São Paulo - SP</p>
+      </div>
+
+      <div class="space-y-2">
+        <a
+          href="https://www.google.com/maps/dir/?api=1&destination=Av.%20dos%20Bandeirantes%2C%201500%20-%20Vila%20Ol%C3%ADmpia%2C%20S%C3%A3o%20Paulo%20-%20SP"
+          target="_blank"
+          rel="noreferrer"
+          class="w-full py-3 px-4 rounded-2xl bg-blue-600 hover:bg-blue-700 active:scale-[0.98] text-white font-black text-xs flex items-center justify-center gap-2 shadow-md shadow-blue-500/20 transition"
+        >
+          <i class="fa-solid fa-map-location-dot text-sm"></i>
+          <span>Abrir no Google Maps</span>
+        </a>
+
+        <a
+          href="https://waze.com/ul?q=Av.%20dos%20Bandeirantes%2C%201500%20-%20Vila%20Ol%C3%ADmpia%2C%20S%C3%A3o%20Paulo%20-%20SP&navigate=yes"
+          target="_blank"
+          rel="noreferrer"
+          class="w-full py-3 px-4 rounded-2xl bg-[#33ccff] hover:bg-[#2bb8e6] active:scale-[0.98] text-slate-900 font-black text-xs flex items-center justify-center gap-2 shadow-md shadow-sky-400/20 transition"
+        >
+          <i class="fa-solid fa-diamond-turn-right text-sm"></i>
+          <span>Abrir no Waze</span>
+        </a>
+
+        <button
+          type="button"
+          onclick="copyAddressText()"
+          id="btnCopyAddr"
+          class="w-full py-2.5 px-4 rounded-2xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-bold text-xs flex items-center justify-center gap-1.5 transition cursor-pointer"
+        >
+          <i class="fa-solid fa-copy text-slate-400"></i>
+          <span>Copiar Endereço</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Drawer Modal -->
+  <div id="cartModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-xs hidden justify-end">
+    <div class="w-full max-w-md bg-white flex flex-col h-full shadow-2xl">
+      <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/80">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-cart-shopping text-orange-500"></i>
+          <div>
+            <h3 class="font-extrabold text-sm text-slate-900">Meu Carrinho</h3>
+            <span id="drawerCountText" class="text-[11px] text-slate-500">0 itens selecionados</span>
+          </div>
+        </div>
+        <button onclick="toggleCartDrawer(false)" class="p-2 text-slate-400 hover:text-slate-700 text-base font-bold">✕</button>
+      </div>
+
+      <div id="cartItemsList" class="flex-1 p-4 overflow-y-auto divide-y divide-slate-100 space-y-2"></div>
+
+      <div class="p-4 bg-slate-50 border-t border-slate-200 space-y-3.5">
+        <div class="grid grid-cols-2 gap-2">
+          <button
+            type="button"
+            id="btnDelivery"
+            onclick="setDelivery('DELIVERY')"
+            class="py-2.5 rounded-xl text-xs font-extrabold border bg-orange-500 text-white border-orange-500 shadow-xs flex items-center justify-center gap-1.5 cursor-pointer"
+          >
+            <i class="fa-solid fa-truck-fast"></i> Entrega
+          </button>
+          <button
+            type="button"
+            id="btnPickup"
+            onclick="setDelivery('PICKUP')"
+            class="py-2.5 rounded-xl text-xs font-extrabold border bg-white text-slate-700 border-slate-200 flex items-center justify-center gap-1.5 cursor-pointer"
+          >
+            <i class="fa-solid fa-store"></i> Retirar na Loja
+          </button>
+        </div>
+
+        <div class="space-y-2">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 mb-1">Seu Nome (opcional)</label>
+            <input
+              type="text"
+              id="customerNameInput"
+              placeholder="Ex: Carlos Silva"
+              class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-orange-500"
+            />
+          </div>
+
+          <div class="grid grid-cols-3 gap-1.5 text-xs">
+            <button type="button" onclick="setPayment('PIX')" id="payPIX" class="py-1.5 rounded-lg font-bold border bg-slate-900 text-white border-slate-900 text-[11px] flex items-center justify-center gap-1"><i class="fa-brands fa-pix text-teal-300"></i> PIX</button>
+            <button type="button" onclick="setPayment('Cartão')" id="payCard" class="py-1.5 rounded-lg font-bold border bg-white text-slate-700 border-slate-200 text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-credit-card text-blue-500"></i> Cartão</button>
+            <button type="button" onclick="setPayment('Dinheiro')" id="payCash" class="py-1.5 rounded-lg font-bold border bg-white text-slate-700 border-slate-200 text-[11px] flex items-center justify-center gap-1"><i class="fa-solid fa-money-bill-wave text-emerald-500"></i> Dinheiro</button>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-1 border-t border-slate-200">
+          <span class="font-bold text-slate-600 text-xs">Total do Pedido:</span>
+          <span id="drawerTotalText" class="font-black text-xl text-slate-900 font-mono">R$ 0,00</span>
+        </div>
+
+        <button
+          type="button"
+          onclick="sendWhatsAppOrder()"
+          class="w-full py-3.5 bg-[#25d366] hover:bg-emerald-600 active:scale-[0.98] text-white font-black text-sm rounded-2xl shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 transition cursor-pointer"
+        >
+          <i class="fa-brands fa-whatsapp text-lg"></i>
+          <span>Enviar Pedido no WhatsApp da Loja</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const PRODUCTS = [{"id":"df75779d-d238-4313-a77e-08fef1f20880","name":"Bateria Selada Heliar 12V 5Ah HTZ6L (Garantia 12 Meses)","category":"Peças de Motor","brand":"Heliar","salePrice":240,"imageUrl":"https://iili.io/CLiSw0B.md.png"},{"id":"b7748a31-a5b4-4440-955b-3acfe3340204","name":"Capacete Taurus San Marino Preto Fosco 58","category":"Capacetes e Acessórios","brand":"Taurus","salePrice":189.9,"imageUrl":"https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=500&auto=format&fit=crop&q=60"},{"id":"d492738e-5d79-4cc0-a1f5-3f6320688cda","name":"Kit Transmissão Riffel Titan 160 / Fan 160 c/ Retentor O-Ring","category":"Transmissão e Relação","brand":"Riffel","salePrice":185,"imageUrl":"https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=500&auto=format&fit=crop&q=60"},{"id":"ef1da215-a32e-42ec-80f9-f8a71a5a6f1a","name":"Lona / Sapata de Freio Traseira Diafrag Titan 150/160/Fan","category":"Freios e Suspensão","brand":"Diafrag","salePrice":35,"imageUrl":"https://images.unsplash.com/photo-1508974239320-0a029497e820?w=500&auto=format&fit=crop&q=60"},{"id":"4d387676-86b1-44ec-9db1-c4e87e91348f","name":"Pastilha de Freio Dianteira Cobreq N-913 Titan 150/160","category":"Freios e Suspensão","brand":"Cobreq","salePrice":42,"imageUrl":"https://images.unsplash.com/photo-1508974239320-0a029497e820?w=500&auto=format&fit=crop&q=60"},{"id":"a0f48d67-f095-494e-aff1-a6342515a8af","name":"Pneu Dianteiro Vipal ST300 2.75-18 Tubetype","category":"Pneus e Câmaras","brand":"Vipal","salePrice":195,"imageUrl":"https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=500&auto=format&fit=crop&q=60"},{"id":"6d79674a-1c8a-4455-a98d-fa339e8515f6","name":"Pneu Traseiro Pirelli City Dragon 90/90-18","category":"Pneus e Câmaras","brand":"Pirelli","salePrice":259,"imageUrl":"https://images.unsplash.com/photo-1578844251758-2f71da64c96f?w=500&auto=format&fit=crop&q=60"},{"id":"abaf9ec4-b6fb-4e0c-8cf4-9daf53432558","name":"Vela de Ignição NGK CPR8EA-9 Titan 160 / NXR 160 Bros","category":"Peças de Motor","brand":"NGK","salePrice":38,"imageUrl":"https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=500&auto=format&fit=crop&q=60"},{"id":"493ad5c9-396d-4f1d-a77b-6bd5c9e0fcee","name":"Óleo Motul 5000 4T 20W50 Mineral 1L","category":"Óleos e Lubrificantes","brand":"Motul","salePrice":45,"imageUrl":"https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=500&auto=format&fit=crop&q=60"},{"id":"6a01f9a9-035b-44ec-8dc6-5dc69345e5f3","name":"Óleo Yamalube 4T 10W40 Semissintético 1L","category":"Óleos e Lubrificantes","brand":"Yamalube","salePrice":52,"imageUrl":"https://images.unsplash.com/photo-1635773054018-22c6085a6a68?w=500&auto=format&fit=crop&q=60"}];
+    const CATEGORIES = ["Todos","Capacetes e Acessórios","Freios e Suspensão","Peças de Motor","Pneus e Câmaras","Serviços de Oficina","Transmissão e Relação","Óleos e Lubrificantes"];
+    const STORE_WHATSAPP = "11988887777";
+    const FULL_ADDRESS = "Av. dos Bandeirantes, 1500 - Vila Olímpia, São Paulo - SP";
+
+    let currentCategory = 'Todos';
+    let searchQuery = '';
+    let cart = {};
+    let deliveryMode = 'DELIVERY';
+    let paymentMode = 'PIX';
+
+    function formatBRL(val) {
+      return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val || 0);
+    }
+
+    function openGpsModal() {
+      const modal = document.getElementById('gpsModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeGpsModal() {
+      const modal = document.getElementById('gpsModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function copyAddressText() {
+      navigator.clipboard.writeText(FULL_ADDRESS);
+      const btn = document.getElementById('btnCopyAddr');
+      btn.innerHTML = '<i class="fa-solid fa-check text-emerald-600"></i> Endereço Copiado!';
+      setTimeout(() => { btn.innerHTML = '<i class="fa-solid fa-copy text-slate-400"></i> Copiar Endereço'; }, 2500);
+    }
+
+    function getCategoryFaIcon(catName) {
+      const s = catName.toLowerCase();
+      if (s === 'todos') return '<i class="fa-solid fa-border-all text-orange-500"></i>';
+      if (s.includes('óleo') || s.includes('oleo') || s.includes('lubrificante')) return '<i class="fa-solid fa-oil-can text-amber-500"></i>';
+      if (s.includes('capacete') || s.includes('viseira')) return '<i class="fa-solid fa-helmet-safety text-sky-500"></i>';
+      if (s.includes('pneu') || s.includes('câmara')) return '<i class="fa-solid fa-circle-notch text-slate-700"></i>';
+      if (s.includes('freio') || s.includes('pastilha') || s.includes('disco')) return '<i class="fa-solid fa-circle-stop text-rose-500"></i>';
+      if (s.includes('relação') || s.includes('corrente') || s.includes('transmiss')) return '<i class="fa-solid fa-gears text-orange-500"></i>';
+      if (s.includes('bateria') || s.includes('vela')) return '<i class="fa-solid fa-bolt text-yellow-500"></i>';
+      if (s.includes('serviço') || s.includes('revisão') || s.includes('mão de obra')) return '<i class="fa-solid fa-wrench text-purple-500"></i>';
+      return '<i class="fa-solid fa-box-open text-blue-500"></i>';
+    }
+
+    function renderCategories() {
+      const container = document.getElementById('categoryContainer');
+      container.innerHTML = CATEGORIES.map(cat => {
+        const count = cat === 'Todos' ? PRODUCTS.length : PRODUCTS.filter(p => p.category === cat).length;
+        const isSel = currentCategory === cat;
+        return `
+          <button
+            onclick="selectCategory('${cat}')"
+            class="px-4 py-2.5 rounded-2xl text-xs font-extrabold whitespace-nowrap transition-all shadow-xs flex items-center gap-2 border cursor-pointer ${
+              isSel ? 'bg-orange-500 text-white border-orange-500 shadow-md shadow-orange-500/25 scale-[1.02]' : 'bg-white text-slate-700 hover:bg-slate-50 border-slate-200'
+            }"
+          >
+            <span class="${isSel ? 'text-white' : ''}">${getCategoryFaIcon(cat)}</span>
+            <span>${cat}</span>
+            <span class="text-[10px] px-1.5 py-0.2 rounded-full ${isSel ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'}">${count}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function selectCategory(cat) {
+      currentCategory = cat;
+      renderCategories();
+      renderProducts();
+    }
+
+    function getProductVectorBadge(name, cat) {
+      const str = (name + ' ' + (cat || '')).toLowerCase();
+      let icon = 'fa-solid fa-box-open';
+      let color = 'text-blue-500 bg-blue-50 border-blue-200';
+
+      if (str.includes('óleo') || str.includes('oleo') || str.includes('lubrificante')) {
+        icon = 'fa-solid fa-oil-can';
+        color = 'text-amber-500 bg-amber-50 border-amber-200';
+      } else if (str.includes('capacete') || str.includes('viseira')) {
+        icon = 'fa-solid fa-helmet-safety';
+        color = 'text-sky-500 bg-sky-50 border-sky-200';
+      } else if (str.includes('pneu') || str.includes('câmara')) {
+        icon = 'fa-solid fa-circle-notch';
+        color = 'text-slate-700 bg-slate-100 border-slate-200';
+      } else if (str.includes('freio') || str.includes('pastilha') || str.includes('disco')) {
+        icon = 'fa-solid fa-circle-stop';
+        color = 'text-rose-500 bg-rose-50 border-rose-200';
+      } else if (str.includes('relação') || str.includes('corrente') || str.includes('transmiss')) {
+        icon = 'fa-solid fa-gears';
+        color = 'text-orange-500 bg-orange-50 border-orange-200';
+      } else if (str.includes('bateria') || str.includes('vela')) {
+        icon = 'fa-solid fa-bolt';
+        color = 'text-yellow-500 bg-yellow-50 border-yellow-200';
+      } else if (str.includes('serviço') || str.includes('revisão') || str.includes('mão de obra')) {
+        icon = 'fa-solid fa-wrench';
+        color = 'text-purple-500 bg-purple-50 border-purple-200';
+      }
+
+      return `
+        <div class="w-16 h-16 rounded-2xl border ${color} flex items-center justify-center text-2xl shadow-inner group-hover:scale-110 transition-transform duration-300">
+          <i class="${icon}"></i>
+        </div>
+      `;
+    }
+
+    function renderProducts() {
+      const grid = document.getElementById('productsGrid');
+      const filtered = PRODUCTS.filter(p => {
+        const matchesCat = currentCategory === 'Todos' || p.category === currentCategory;
+        const q = searchQuery.toLowerCase().trim();
+        const matchesSearch = !q || p.name.toLowerCase().includes(q) || (p.brand && p.brand.toLowerCase().includes(q));
+        return matchesCat && matchesSearch;
+      });
+
+      document.getElementById('productCount').innerText = filtered.length + ' itens';
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full py-14 text-center text-slate-400 bg-white rounded-3xl border border-slate-200/80 shadow-xs p-6">
+            <i class="fa-solid fa-box-open text-3xl text-slate-300 mb-2"></i>
+            <p class="text-sm font-bold text-slate-800">Nenhum produto encontrado</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(p => {
+        const inCart = cart[p.id]?.qty || 0;
+        return `
+          <div class="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+            <div class="h-40 sm:h-44 bg-slate-50 flex items-center justify-center overflow-hidden relative border-b border-slate-100 p-2">
+              ${p.imageUrl ? `<img src="${p.imageUrl}" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" loading="lazy" />` : ''}
+              <div class="${p.imageUrl ? 'hidden' : 'flex'} items-center justify-center w-full h-full">
+                ${getProductVectorBadge(p.name, p.category)}
+              </div>
+              ${p.brand ? `<span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 bg-slate-900/85 rounded-lg text-[10px] font-black text-white uppercase">${p.brand}</span>` : ''}
+              ${inCart > 0 ? `<span class="absolute top-2.5 right-2.5 px-2.5 py-0.5 bg-emerald-600 text-white rounded-full text-[11px] font-black shadow-xs">${inCart} un</span>` : ''}
+            </div>
+            <div class="p-3.5 sm:p-4 flex flex-col justify-between flex-1 space-y-3">
+              <div>
+                <span class="text-[10px] font-extrabold uppercase text-orange-600 tracking-wider block mb-1">${p.category || 'Motopeças'}</span>
+                <h4 class="font-extrabold text-xs sm:text-sm text-slate-900 line-clamp-2 leading-snug min-h-[36px]">${p.name}</h4>
+                <div class="mt-2 flex items-baseline gap-1">
+                  <span class="text-orange-600 text-lg sm:text-xl font-black tracking-tight font-mono">${formatBRL(p.salePrice)}</span>
+                </div>
+                <span class="text-[10px] text-slate-400 font-medium block">ou até 3x de ${formatBRL(p.salePrice / 3)}</span>
+              </div>
+              ${inCart > 0 ? `
+                <div class="flex items-center justify-between bg-emerald-50 border border-emerald-200 rounded-2xl p-1 shadow-xs">
+                  <button onclick="updateQty('${p.id}', -1)" class="w-8 h-8 rounded-xl bg-white text-emerald-800 flex items-center justify-center font-black shadow-xs active:scale-90">-</button>
+                  <span class="text-xs font-black text-emerald-900">${inCart} no carrinho</span>
+                  <button onclick="updateQty('${p.id}', 1)" class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-black shadow-xs active:scale-90">+</button>
+                </div>
+              ` : `
+                <button onclick="addToCart('${p.id}')" class="w-full py-2.5 sm:py-3 rounded-2xl font-black text-xs bg-orange-500 hover:bg-orange-600 active:scale-[0.97] text-white shadow-md shadow-orange-500/20 transition flex items-center justify-center gap-1.5 cursor-pointer">
+                  <i class="fa-solid fa-plus text-[11px]"></i>
+                  <span>Adicionar ao Carrinho</span>
+                </button>
+              `}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function addToCart(id) {
+      const prod = PRODUCTS.find(p => p.id === id);
+      if (!prod) return;
+      if (!cart[id]) cart[id] = { prod, qty: 0 };
+      cart[id].qty++;
+      updateCartUi();
+      renderProducts();
+    }
+
+    function updateQty(id, delta) {
+      if (!cart[id]) return;
+      cart[id].qty += delta;
+      if (cart[id].qty <= 0) delete cart[id];
+      updateCartUi();
+      renderProducts();
+    }
+
+    function updateCartUi() {
+      const items = Object.values(cart);
+      const totalQty = items.reduce((acc, item) => acc + item.qty, 0);
+      const totalPrice = items.reduce((acc, item) => acc + item.prod.salePrice * item.qty, 0);
+
+      const floatingBar = document.getElementById('floatingBar');
+      const badge = document.getElementById('cartBadge');
+
+      if (totalQty > 0) {
+        floatingBar.classList.remove('hidden');
+        badge.innerText = totalQty;
+      } else {
+        floatingBar.classList.add('hidden');
+      }
+
+      document.getElementById('cartCountText').innerText = totalQty + (totalQty === 1 ? ' item no carrinho' : ' itens no carrinho');
+      document.getElementById('drawerCountText').innerText = totalQty + ' itens selecionados';
+      document.getElementById('cartTotalText').innerText = formatBRL(totalPrice);
+      document.getElementById('drawerTotalText').innerText = formatBRL(totalPrice);
+
+      const listContainer = document.getElementById('cartItemsList');
+      if (items.length === 0) {
+        listContainer.innerHTML = `
+          <div class="h-full flex flex-col items-center justify-center text-slate-400 text-center py-16">
+            <i class="fa-solid fa-cart-shopping text-4xl text-slate-200 mb-2"></i>
+            <p class="font-bold text-sm text-slate-800">Seu carrinho está vazio</p>
+            <p class="text-xs text-slate-400 mt-0.5">Adicione peças da vitrine para fazer o pedido.</p>
+          </div>
+        `;
+      } else {
+        listContainer.innerHTML = items.map(({ prod, qty }) => `
+          <div class="py-3 flex items-center justify-between gap-3">
+            <div class="flex-1 min-w-0">
+              <p class="font-bold text-xs text-slate-900 truncate">${prod.name}</p>
+              <p class="text-[11px] text-slate-500 font-mono">${formatBRL(prod.salePrice)} cada</p>
+            </div>
+            <div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-lg border border-slate-200">
+              <button onclick="updateQty('${prod.id}', -1)" class="w-6 h-6 flex items-center justify-center text-slate-700 hover:bg-white rounded font-bold">-</button>
+              <span class="w-6 text-center text-xs font-black text-slate-900">${qty}</span>
+              <button onclick="updateQty('${prod.id}', 1)" class="w-6 h-6 flex items-center justify-center text-slate-700 hover:bg-white rounded font-bold">+</button>
+            </div>
+            <span class="font-black text-xs text-orange-600 w-16 text-right font-mono">${formatBRL(prod.salePrice * qty)}</span>
+          </div>
+        `).join('');
+      }
+    }
+
+    function toggleCartDrawer(open) {
+      const modal = document.getElementById('cartModal');
+      if (open) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      } else {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    function setDelivery(type) {
+      deliveryMode = type;
+      document.getElementById('btnDelivery').className = type === 'DELIVERY'
+        ? 'py-2.5 rounded-xl text-xs font-extrabold border bg-orange-500 text-white border-orange-500 shadow-xs flex items-center justify-center gap-1.5 cursor-pointer'
+        : 'py-2.5 rounded-xl text-xs font-extrabold border bg-white text-slate-700 border-slate-200 flex items-center justify-center gap-1.5 cursor-pointer';
+      document.getElementById('btnPickup').className = type === 'PICKUP'
+        ? 'py-2.5 rounded-xl text-xs font-extrabold border bg-orange-500 text-white border-orange-500 shadow-xs flex items-center justify-center gap-1.5 cursor-pointer'
+        : 'py-2.5 rounded-xl text-xs font-extrabold border bg-white text-slate-700 border-slate-200 flex items-center justify-center gap-1.5 cursor-pointer';
+    }
+
+    function setPayment(pay) {
+      paymentMode = pay;
+      ['PIX', 'Card', 'Cash'].forEach(p => {
+        const el = document.getElementById('pay' + p);
+        const name = p === 'PIX' ? 'PIX' : p === 'Card' ? 'Cartão' : 'Dinheiro';
+        el.className = paymentMode === name
+          ? 'py-1.5 rounded-lg font-bold border bg-slate-900 text-white border-slate-900 text-[11px] flex items-center justify-center gap-1'
+          : 'py-1.5 rounded-lg font-bold border bg-white text-slate-700 border-slate-200 text-[11px] flex items-center justify-center gap-1';
+      });
+    }
+
+    function sendWhatsAppOrder() {
+      const items = Object.values(cart);
+      if (items.length === 0) {
+        alert('Adicione pelo menos um item ao seu carrinho.');
+        return;
+      }
+
+      const custName = document.getElementById('customerNameInput').value.trim();
+      const greeting = custName ? `Olá, meu nome é *${custName}*.
+
+` : 'Olá! 👋
+
+';
+      const itemsText = items.map(({ prod, qty }) => `• *${qty}x* ${prod.name} — ${formatBRL(prod.salePrice * qty)}`).join('\n');
+      const totalPrice = items.reduce((acc, item) => acc + item.prod.salePrice * item.qty, 0);
+      const deliveryText = deliveryMode === 'DELIVERY' ? '🛵 *Tipo:* Entrega a domicílio' : '🏬 *Tipo:* Retirada na loja';
+
+      const message = `${greeting}Gostaria de fazer o pedido destes itens da vitrine online:
+
+${itemsText}
+
+*Total: ${formatBRL(totalPrice)}*
+${deliveryText}
+💳 *Forma pretendida:* ${paymentMode}
+
+Podemos confirmar o pedido?`;
+      
+      let targetUrl = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(message);
+      if (STORE_WHATSAPP) {
+        const fullPhone = STORE_WHATSAPP.length <= 11 ? '55' + STORE_WHATSAPP : STORE_WHATSAPP;
+        targetUrl = 'https://api.whatsapp.com/send?phone=' + fullPhone + '&text=' + encodeURIComponent(message);
+      }
+      window.open(targetUrl, '_blank');
+    }
+
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      renderProducts();
+    });
+
+    renderCategories();
+    renderProducts();
+  </script>
+</body>
+</html>
