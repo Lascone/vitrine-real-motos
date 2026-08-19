@@ -329,10 +329,10 @@
         var badgeClass = isSel ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500';
         var iconSpanClass = isSel ? 'text-white' : '';
 
-        out += '<button onclick="selectCategory(' + JSON.stringify(cat) + ')" class="' + btnClass + '">' +
-          '<span class="' + iconSpanClass + '">' + getCategoryFaIcon(cat) + '</span>' +
-          '<span>' + cat + '</span>' +
-          '<span class="text-[10px] px-1.5 py-0.2 rounded-full ' + badgeClass + '">' + count + '</span>' +
+        out += '<button type="button" data-cat="' + encodeURIComponent(cat) + '" class="' + btnClass + '">' +
+          '<span class="' + iconSpanClass + ' pointer-events-none">' + getCategoryFaIcon(cat) + '</span>' +
+          '<span class="pointer-events-none">' + cat + '</span>' +
+          '<span class="pointer-events-none text-[10px] px-1.5 py-0.2 rounded-full ' + badgeClass + '">' + count + '</span>' +
           '</button>';
       }
       container.innerHTML = out;
@@ -415,13 +415,13 @@
 
         var btnAction = inCart > 0
           ? '<div class="flex items-center justify-between bg-emerald-50 border border-emerald-200 rounded-2xl p-1 shadow-xs">' +
-            '<button onclick="updateQty(' + JSON.stringify(p.id) + ', -1)" class="w-8 h-8 rounded-xl bg-white text-emerald-800 flex items-center justify-center font-black shadow-xs active:scale-90">-</button>' +
+            '<button type="button" data-qty-minus="' + p.id + '" class="w-8 h-8 rounded-xl bg-white text-emerald-800 flex items-center justify-center font-black shadow-xs active:scale-90 cursor-pointer">-</button>' +
             '<span class="text-xs font-black text-emerald-900">' + inCart + ' no carrinho</span>' +
-            '<button onclick="updateQty(' + JSON.stringify(p.id) + ', 1)" class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-black shadow-xs active:scale-90">+</button>' +
+            '<button type="button" data-qty-plus="' + p.id + '" class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-black shadow-xs active:scale-90 cursor-pointer">+</button>' +
             '</div>'
-          : '<button onclick="addToCart(' + JSON.stringify(p.id) + ')" class="w-full py-2.5 sm:py-3 rounded-2xl font-black text-xs bg-orange-500 hover:bg-orange-600 active:scale-[0.97] text-white shadow-md shadow-orange-500/20 transition flex items-center justify-center gap-1.5 cursor-pointer">' +
-            '<i class="fa-solid fa-plus text-[11px]"></i>' +
-            '<span>Adicionar ao Carrinho</span>' +
+          : '<button type="button" data-add-id="' + p.id + '" class="w-full py-2.5 sm:py-3 rounded-2xl font-black text-xs bg-orange-500 hover:bg-orange-600 active:scale-[0.97] text-white shadow-md shadow-orange-500/20 transition flex items-center justify-center gap-1.5 cursor-pointer">' +
+            '<i class="fa-solid fa-plus text-[11px] pointer-events-none"></i>' +
+            '<span class="pointer-events-none">Adicionar ao Carrinho</span>' +
             '</button>';
 
         out += '<div class="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">' +
@@ -521,9 +521,9 @@
             '<p class="text-[11px] text-slate-500 font-mono">' + formatBRL(it.prod.salePrice) + ' cada</p>' +
             '</div>' +
             '<div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-lg border border-slate-200">' +
-            '<button onclick="updateQty(' + JSON.stringify(it.prod.id) + ', -1)" class="w-6 h-6 flex items-center justify-center text-slate-700 hover:bg-white rounded font-bold">-</button>' +
+            '<button type="button" data-cart-minus="' + it.prod.id + '" class="w-6 h-6 flex items-center justify-center text-slate-700 hover:bg-white rounded font-bold cursor-pointer">-</button>' +
             '<span class="w-6 text-center text-xs font-black text-slate-900">' + it.qty + '</span>' +
-            '<button onclick="updateQty(' + JSON.stringify(it.prod.id) + ', 1)" class="w-6 h-6 flex items-center justify-center text-slate-700 hover:bg-white rounded font-bold">+</button>' +
+            '<button type="button" data-cart-plus="' + it.prod.id + '" class="w-6 h-6 flex items-center justify-center text-slate-700 hover:bg-white rounded font-bold cursor-pointer">+</button>' +
             '</div>' +
             '<span class="font-black text-xs text-orange-600 w-16 text-right font-mono">' + formatBRL(it.prod.salePrice * it.qty) + '</span>' +
             '</div>';
@@ -606,6 +606,55 @@
         targetUrl = 'https://api.whatsapp.com/send?phone=' + fullPhone + '&text=' + encodeURIComponent(message);
       }
       window.open(targetUrl, '_blank');
+    }
+
+    // Attach Event Listeners via Event Delegation
+    var catContainer = document.getElementById('categoryContainer');
+    if (catContainer) {
+      catContainer.addEventListener('click', function(e) {
+        var btn = e.target.closest('[data-cat]');
+        if (btn) {
+          var rawCat = btn.getAttribute('data-cat');
+          selectCategory(decodeURIComponent(rawCat));
+        }
+      });
+    }
+
+    var gridContainer = document.getElementById('productsGrid');
+    if (gridContainer) {
+      gridContainer.addEventListener('click', function(e) {
+        var addBtn = e.target.closest('[data-add-id]');
+        if (addBtn) {
+          addToCart(addBtn.getAttribute('data-add-id'));
+          return;
+        }
+        var minusBtn = e.target.closest('[data-qty-minus]');
+        if (minusBtn) {
+          updateQty(minusBtn.getAttribute('data-qty-minus'), -1);
+          return;
+        }
+        var plusBtn = e.target.closest('[data-qty-plus]');
+        if (plusBtn) {
+          updateQty(plusBtn.getAttribute('data-qty-plus'), 1);
+          return;
+        }
+      });
+    }
+
+    var cartListContainer = document.getElementById('cartItemsList');
+    if (cartListContainer) {
+      cartListContainer.addEventListener('click', function(e) {
+        var minusBtn = e.target.closest('[data-cart-minus]');
+        if (minusBtn) {
+          updateQty(minusBtn.getAttribute('data-cart-minus'), -1);
+          return;
+        }
+        var plusBtn = e.target.closest('[data-cart-plus]');
+        if (plusBtn) {
+          updateQty(plusBtn.getAttribute('data-cart-plus'), 1);
+          return;
+        }
+      });
     }
 
     var searchInput = document.getElementById('searchInput');
