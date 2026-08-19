@@ -285,21 +285,21 @@
 
     function openGpsModal() {
       var modal = document.getElementById('gpsModal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
+      if (modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); }
     }
 
     function closeGpsModal() {
       var modal = document.getElementById('gpsModal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
+      if (modal) { modal.classList.add('hidden'); modal.classList.remove('flex'); }
     }
 
     function copyAddressText() {
-      navigator.clipboard.writeText(FULL_ADDRESS);
+      if (navigator.clipboard) navigator.clipboard.writeText(FULL_ADDRESS);
       var btn = document.getElementById('btnCopyAddr');
-      btn.innerHTML = '<i class="fa-solid fa-check text-emerald-600"></i> Endereço Copiado!';
-      setTimeout(function() { btn.innerHTML = '<i class="fa-solid fa-copy text-slate-400"></i> Copiar Endereço'; }, 2500);
+      if (btn) {
+        btn.innerHTML = '<i class="fa-solid fa-check text-emerald-600"></i> Endereço Copiado!';
+        setTimeout(function() { btn.innerHTML = '<i class="fa-solid fa-copy text-slate-400"></i> Copiar Endereço'; }, 2500);
+      }
     }
 
     function getCategoryFaIcon(catName) {
@@ -318,7 +318,7 @@
     function renderCategories() {
       var container = document.getElementById('categoryContainer');
       if (!container) return;
-      var html = '';
+      var out = '';
       for (var i = 0; i < CATEGORIES.length; i++) {
         var cat = CATEGORIES[i];
         var count = cat === 'Todos' ? PRODUCTS.length : PRODUCTS.filter(function(p) { return p.category === cat; }).length;
@@ -329,13 +329,13 @@
         var badgeClass = isSel ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500';
         var iconSpanClass = isSel ? 'text-white' : '';
 
-        html += '<button onclick="selectCategory('' + cat.replace(/'/g, "\'") + '')" class="' + btnClass + '">' +
+        out += '<button onclick="selectCategory(' + JSON.stringify(cat) + ')" class="' + btnClass + '">' +
           '<span class="' + iconSpanClass + '">' + getCategoryFaIcon(cat) + '</span>' +
           '<span>' + cat + '</span>' +
           '<span class="text-[10px] px-1.5 py-0.2 rounded-full ' + badgeClass + '">' + count + '</span>' +
           '</button>';
       }
-      container.innerHTML = html;
+      container.innerHTML = out;
     }
 
     function selectCategory(cat) {
@@ -398,13 +398,13 @@
         return;
       }
 
-      var html = '';
+      var out = '';
       for (var i = 0; i < filtered.length; i++) {
         var p = filtered[i];
         var inCart = (cart[p.id] && cart[p.id].qty) || 0;
         var imgBlock = '';
         if (p.imageUrl) {
-          imgBlock = '<img src="' + p.imageUrl + '" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" loading="lazy" />' +
+          imgBlock = '<img src="' + p.imageUrl + '" alt="" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" loading="lazy" />' +
             '<div class="hidden items-center justify-center w-full h-full">' + getProductVectorBadge(p.name, p.category) + '</div>';
         } else {
           imgBlock = '<div class="flex items-center justify-center w-full h-full">' + getProductVectorBadge(p.name, p.category) + '</div>';
@@ -415,16 +415,16 @@
 
         var btnAction = inCart > 0
           ? '<div class="flex items-center justify-between bg-emerald-50 border border-emerald-200 rounded-2xl p-1 shadow-xs">' +
-            '<button onclick="updateQty('' + p.id + '', -1)" class="w-8 h-8 rounded-xl bg-white text-emerald-800 flex items-center justify-center font-black shadow-xs active:scale-90">-</button>' +
+            '<button onclick="updateQty(' + JSON.stringify(p.id) + ', -1)" class="w-8 h-8 rounded-xl bg-white text-emerald-800 flex items-center justify-center font-black shadow-xs active:scale-90">-</button>' +
             '<span class="text-xs font-black text-emerald-900">' + inCart + ' no carrinho</span>' +
-            '<button onclick="updateQty('' + p.id + '', 1)" class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-black shadow-xs active:scale-90">+</button>' +
+            '<button onclick="updateQty(' + JSON.stringify(p.id) + ', 1)" class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-black shadow-xs active:scale-90">+</button>' +
             '</div>'
-          : '<button onclick="addToCart('' + p.id + '')" class="w-full py-2.5 sm:py-3 rounded-2xl font-black text-xs bg-orange-500 hover:bg-orange-600 active:scale-[0.97] text-white shadow-md shadow-orange-500/20 transition flex items-center justify-center gap-1.5 cursor-pointer">' +
+          : '<button onclick="addToCart(' + JSON.stringify(p.id) + ')" class="w-full py-2.5 sm:py-3 rounded-2xl font-black text-xs bg-orange-500 hover:bg-orange-600 active:scale-[0.97] text-white shadow-md shadow-orange-500/20 transition flex items-center justify-center gap-1.5 cursor-pointer">' +
             '<i class="fa-solid fa-plus text-[11px]"></i>' +
             '<span>Adicionar ao Carrinho</span>' +
             '</button>';
 
-        html += '<div class="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">' +
+        out += '<div class="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">' +
           '<div class="h-40 sm:h-44 bg-slate-50 flex items-center justify-center overflow-hidden relative border-b border-slate-100 p-2">' +
           imgBlock +
           brandBadge +
@@ -444,7 +444,7 @@
           '</div>';
       }
 
-      grid.innerHTML = html;
+      grid.innerHTML = out;
     }
 
     function addToCart(id) {
@@ -521,9 +521,9 @@
             '<p class="text-[11px] text-slate-500 font-mono">' + formatBRL(it.prod.salePrice) + ' cada</p>' +
             '</div>' +
             '<div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-lg border border-slate-200">' +
-            '<button onclick="updateQty('' + it.prod.id + '', -1)" class="w-6 h-6 flex items-center justify-center text-slate-700 hover:bg-white rounded font-bold">-</button>' +
+            '<button onclick="updateQty(' + JSON.stringify(it.prod.id) + ', -1)" class="w-6 h-6 flex items-center justify-center text-slate-700 hover:bg-white rounded font-bold">-</button>' +
             '<span class="w-6 text-center text-xs font-black text-slate-900">' + it.qty + '</span>' +
-            '<button onclick="updateQty('' + it.prod.id + '', 1)" class="w-6 h-6 flex items-center justify-center text-slate-700 hover:bg-white rounded font-bold">+</button>' +
+            '<button onclick="updateQty(' + JSON.stringify(it.prod.id) + ', 1)" class="w-6 h-6 flex items-center justify-center text-slate-700 hover:bg-white rounded font-bold">+</button>' +
             '</div>' +
             '<span class="font-black text-xs text-orange-600 w-16 text-right font-mono">' + formatBRL(it.prod.salePrice * it.qty) + '</span>' +
             '</div>';
@@ -591,26 +591,14 @@
 
       var nameInput = document.getElementById('customerNameInput');
       var custName = nameInput ? nameInput.value.trim() : '';
-      var greeting = custName ? 'Olá, meu nome é *' + custName + '*.
-
-' : 'Olá! 👋
-
-';
+      var greeting = custName ? 'Olá, meu nome é *' + custName + '*.\n\n' : 'Olá! 👋\n\n';
       var itemsText = '';
       for (var j = 0; j < items.length; j++) {
-        itemsText += '• *' + items[j].qty + 'x* ' + items[j].prod.name + ' — ' + formatBRL(items[j].prod.salePrice * items[j].qty) + '
-';
+        itemsText += '• *' + items[j].qty + 'x* ' + items[j].prod.name + ' — ' + formatBRL(items[j].prod.salePrice * items[j].qty) + '\n';
       }
       var deliveryText = deliveryMode === 'DELIVERY' ? '🛵 *Tipo:* Entrega a domicílio' : '🏬 *Tipo:* Retirada na loja';
 
-      var message = greeting + 'Gostaria de fazer o pedido destes itens da vitrine online:
-
-' + itemsText + '
-*Total: ' + formatBRL(totalPrice) + '*
-' + deliveryText + '
-💳 *Forma pretendida:* ' + paymentMode + '
-
-Podemos confirmar o pedido?';
+      var message = greeting + 'Gostaria de fazer o pedido destes itens da vitrine online:\n\n' + itemsText + '\n*Total: ' + formatBRL(totalPrice) + '*\n' + deliveryText + '\n💳 *Forma pretendida:* ' + paymentMode + '\n\nPodemos confirmar o pedido?';
       
       var targetUrl = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(message);
       if (STORE_WHATSAPP) {
@@ -630,6 +618,6 @@ Podemos confirmar o pedido?';
 
     renderCategories();
     renderProducts();
-  </script>
+    </script>
 </body>
 </html>
