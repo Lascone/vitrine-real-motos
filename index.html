@@ -5,9 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Real Motos | Catálogo & Vitrine Oficial</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <!-- Font Awesome 6 Pro Vector Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -18,7 +17,7 @@
 </head>
 <body class="bg-slate-100/70 text-slate-800 flex flex-col min-h-screen pb-32 font-sans selection:bg-orange-500 selection:text-white">
 
-  <!-- Premium Header -->
+  <!-- Header -->
   <header class="bg-[#15171c] text-white pt-4 pb-4 px-4 shadow-xl sticky top-0 z-30 border-b border-white/10 backdrop-blur-md">
     <div class="max-w-3xl mx-auto space-y-3">
       <div class="flex items-center justify-between">
@@ -39,7 +38,6 @@
           </div>
         </div>
 
-        {/* Compact GPS & Status Badge */}
         <div class="flex flex-col items-end text-right gap-1">
           <button
             type="button"
@@ -270,71 +268,74 @@
   </div>
 
   <script>
-    const PRODUCTS = [{"id":"df75779d-d238-4313-a77e-08fef1f20880","name":"Bateria Selada Heliar 12V 5Ah HTZ6L (Garantia 12 Meses)","category":"Peças de Motor","brand":"Heliar","salePrice":240,"imageUrl":"https://iili.io/CLiSw0B.md.png"},{"id":"b7748a31-a5b4-4440-955b-3acfe3340204","name":"Capacete Taurus San Marino Preto Fosco 58","category":"Capacetes e Acessórios","brand":"Taurus","salePrice":189.9,"imageUrl":"https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=500&auto=format&fit=crop&q=60"},{"id":"d492738e-5d79-4cc0-a1f5-3f6320688cda","name":"Kit Transmissão Riffel Titan 160 / Fan 160 c/ Retentor O-Ring","category":"Transmissão e Relação","brand":"Riffel","salePrice":185,"imageUrl":"https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=500&auto=format&fit=crop&q=60"},{"id":"ef1da215-a32e-42ec-80f9-f8a71a5a6f1a","name":"Lona / Sapata de Freio Traseira Diafrag Titan 150/160/Fan","category":"Freios e Suspensão","brand":"Diafrag","salePrice":35,"imageUrl":"https://images.unsplash.com/photo-1508974239320-0a029497e820?w=500&auto=format&fit=crop&q=60"},{"id":"4d387676-86b1-44ec-9db1-c4e87e91348f","name":"Pastilha de Freio Dianteira Cobreq N-913 Titan 150/160","category":"Freios e Suspensão","brand":"Cobreq","salePrice":42,"imageUrl":"https://images.unsplash.com/photo-1508974239320-0a029497e820?w=500&auto=format&fit=crop&q=60"},{"id":"a0f48d67-f095-494e-aff1-a6342515a8af","name":"Pneu Dianteiro Vipal ST300 2.75-18 Tubetype","category":"Pneus e Câmaras","brand":"Vipal","salePrice":195,"imageUrl":"https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=500&auto=format&fit=crop&q=60"},{"id":"6d79674a-1c8a-4455-a98d-fa339e8515f6","name":"Pneu Traseiro Pirelli City Dragon 90/90-18","category":"Pneus e Câmaras","brand":"Pirelli","salePrice":259,"imageUrl":"https://images.unsplash.com/photo-1578844251758-2f71da64c96f?w=500&auto=format&fit=crop&q=60"},{"id":"abaf9ec4-b6fb-4e0c-8cf4-9daf53432558","name":"Vela de Ignição NGK CPR8EA-9 Titan 160 / NXR 160 Bros","category":"Peças de Motor","brand":"NGK","salePrice":38,"imageUrl":"https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=500&auto=format&fit=crop&q=60"},{"id":"493ad5c9-396d-4f1d-a77b-6bd5c9e0fcee","name":"Óleo Motul 5000 4T 20W50 Mineral 1L","category":"Óleos e Lubrificantes","brand":"Motul","salePrice":45,"imageUrl":"https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=500&auto=format&fit=crop&q=60"},{"id":"6a01f9a9-035b-44ec-8dc6-5dc69345e5f3","name":"Óleo Yamalube 4T 10W40 Semissintético 1L","category":"Óleos e Lubrificantes","brand":"Yamalube","salePrice":52,"imageUrl":"https://images.unsplash.com/photo-1635773054018-22c6085a6a68?w=500&auto=format&fit=crop&q=60"}];
-    const CATEGORIES = ["Todos","Capacetes e Acessórios","Freios e Suspensão","Peças de Motor","Pneus e Câmaras","Serviços de Oficina","Transmissão e Relação","Óleos e Lubrificantes"];
-    const STORE_WHATSAPP = "11988887777";
-    const FULL_ADDRESS = "Av. dos Bandeirantes, 1500 - Vila Olímpia, São Paulo - SP";
+    var PRODUCTS = [{"id":"df75779d-d238-4313-a77e-08fef1f20880","name":"Bateria Selada Heliar 12V 5Ah HTZ6L (Garantia 12 Meses)","category":"Peças de Motor","brand":"Heliar","salePrice":240,"imageUrl":"https://iili.io/CLiSw0B.md.png"},{"id":"b7748a31-a5b4-4440-955b-3acfe3340204","name":"Capacete Taurus San Marino Preto Fosco 58","category":"Capacetes e Acessórios","brand":"Taurus","salePrice":189.9,"imageUrl":"https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=500&auto=format&fit=crop&q=60"},{"id":"d492738e-5d79-4cc0-a1f5-3f6320688cda","name":"Kit Transmissão Riffel Titan 160 / Fan 160 c/ Retentor O-Ring","category":"Transmissão e Relação","brand":"Riffel","salePrice":185,"imageUrl":"https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=500&auto=format&fit=crop&q=60"},{"id":"ef1da215-a32e-42ec-80f9-f8a71a5a6f1a","name":"Lona / Sapata de Freio Traseira Diafrag Titan 150/160/Fan","category":"Freios e Suspensão","brand":"Diafrag","salePrice":35,"imageUrl":"https://images.unsplash.com/photo-1508974239320-0a029497e820?w=500&auto=format&fit=crop&q=60"},{"id":"4d387676-86b1-44ec-9db1-c4e87e91348f","name":"Pastilha de Freio Dianteira Cobreq N-913 Titan 150/160","category":"Freios e Suspensão","brand":"Cobreq","salePrice":42,"imageUrl":"https://images.unsplash.com/photo-1508974239320-0a029497e820?w=500&auto=format&fit=crop&q=60"},{"id":"a0f48d67-f095-494e-aff1-a6342515a8af","name":"Pneu Dianteiro Vipal ST300 2.75-18 Tubetype","category":"Pneus e Câmaras","brand":"Vipal","salePrice":195,"imageUrl":"https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=500&auto=format&fit=crop&q=60"},{"id":"6d79674a-1c8a-4455-a98d-fa339e8515f6","name":"Pneu Traseiro Pirelli City Dragon 90/90-18","category":"Pneus e Câmaras","brand":"Pirelli","salePrice":259,"imageUrl":"https://images.unsplash.com/photo-1578844251758-2f71da64c96f?w=500&auto=format&fit=crop&q=60"},{"id":"abaf9ec4-b6fb-4e0c-8cf4-9daf53432558","name":"Vela de Ignição NGK CPR8EA-9 Titan 160 / NXR 160 Bros","category":"Peças de Motor","brand":"NGK","salePrice":38,"imageUrl":"https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=500&auto=format&fit=crop&q=60"},{"id":"493ad5c9-396d-4f1d-a77b-6bd5c9e0fcee","name":"Óleo Motul 5000 4T 20W50 Mineral 1L","category":"Óleos e Lubrificantes","brand":"Motul","salePrice":45,"imageUrl":"https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=500&auto=format&fit=crop&q=60"},{"id":"6a01f9a9-035b-44ec-8dc6-5dc69345e5f3","name":"Óleo Yamalube 4T 10W40 Semissintético 1L","category":"Óleos e Lubrificantes","brand":"Yamalube","salePrice":52,"imageUrl":"https://images.unsplash.com/photo-1635773054018-22c6085a6a68?w=500&auto=format&fit=crop&q=60"}];
+    var CATEGORIES = ["Todos","Capacetes e Acessórios","Freios e Suspensão","Peças de Motor","Pneus e Câmaras","Serviços de Oficina","Transmissão e Relação","Óleos e Lubrificantes"];
+    var STORE_WHATSAPP = "11988887777";
+    var FULL_ADDRESS = "Av. dos Bandeirantes, 1500 - Vila Olímpia, São Paulo - SP";
 
-    let currentCategory = 'Todos';
-    let searchQuery = '';
-    let cart = {};
-    let deliveryMode = 'DELIVERY';
-    let paymentMode = 'PIX';
+    var currentCategory = 'Todos';
+    var searchQuery = '';
+    var cart = {};
+    var deliveryMode = 'DELIVERY';
+    var paymentMode = 'PIX';
 
     function formatBRL(val) {
       return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val || 0);
     }
 
     function openGpsModal() {
-      const modal = document.getElementById('gpsModal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
+      var modal = document.getElementById('gpsModal');
+      if (modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); }
     }
 
     function closeGpsModal() {
-      const modal = document.getElementById('gpsModal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
+      var modal = document.getElementById('gpsModal');
+      if (modal) { modal.classList.add('hidden'); modal.classList.remove('flex'); }
     }
 
     function copyAddressText() {
-      navigator.clipboard.writeText(FULL_ADDRESS);
-      const btn = document.getElementById('btnCopyAddr');
-      btn.innerHTML = '<i class="fa-solid fa-check text-emerald-600"></i> Endereço Copiado!';
-      setTimeout(() => { btn.innerHTML = '<i class="fa-solid fa-copy text-slate-400"></i> Copiar Endereço'; }, 2500);
+      if (navigator.clipboard) navigator.clipboard.writeText(FULL_ADDRESS);
+      var btn = document.getElementById('btnCopyAddr');
+      if (btn) {
+        btn.innerHTML = '<i class="fa-solid fa-check text-emerald-600"></i> Endereço Copiado!';
+        setTimeout(function() { btn.innerHTML = '<i class="fa-solid fa-copy text-slate-400"></i> Copiar Endereço'; }, 2500);
+      }
     }
 
     function getCategoryFaIcon(catName) {
-      const s = catName.toLowerCase();
+      var s = String(catName || '').toLowerCase();
       if (s === 'todos') return '<i class="fa-solid fa-border-all text-orange-500"></i>';
-      if (s.includes('óleo') || s.includes('oleo') || s.includes('lubrificante')) return '<i class="fa-solid fa-oil-can text-amber-500"></i>';
-      if (s.includes('capacete') || s.includes('viseira')) return '<i class="fa-solid fa-helmet-safety text-sky-500"></i>';
-      if (s.includes('pneu') || s.includes('câmara')) return '<i class="fa-solid fa-circle-notch text-slate-700"></i>';
-      if (s.includes('freio') || s.includes('pastilha') || s.includes('disco')) return '<i class="fa-solid fa-circle-stop text-rose-500"></i>';
-      if (s.includes('relação') || s.includes('corrente') || s.includes('transmiss')) return '<i class="fa-solid fa-gears text-orange-500"></i>';
-      if (s.includes('bateria') || s.includes('vela')) return '<i class="fa-solid fa-bolt text-yellow-500"></i>';
-      if (s.includes('serviço') || s.includes('revisão') || s.includes('mão de obra')) return '<i class="fa-solid fa-wrench text-purple-500"></i>';
+      if (s.indexOf('óleo') !== -1 || s.indexOf('oleo') !== -1 || s.indexOf('lubrificante') !== -1) return '<i class="fa-solid fa-oil-can text-amber-500"></i>';
+      if (s.indexOf('capacete') !== -1 || s.indexOf('viseira') !== -1) return '<i class="fa-solid fa-helmet-safety text-sky-500"></i>';
+      if (s.indexOf('pneu') !== -1 || s.indexOf('câmara') !== -1) return '<i class="fa-solid fa-circle-notch text-slate-700"></i>';
+      if (s.indexOf('freio') !== -1 || s.indexOf('pastilha') !== -1 || s.indexOf('disco') !== -1) return '<i class="fa-solid fa-circle-stop text-rose-500"></i>';
+      if (s.indexOf('relação') !== -1 || s.indexOf('corrente') !== -1 || s.indexOf('transmiss') !== -1) return '<i class="fa-solid fa-gears text-orange-500"></i>';
+      if (s.indexOf('bateria') !== -1 || s.indexOf('vela') !== -1) return '<i class="fa-solid fa-bolt text-yellow-500"></i>';
+      if (s.indexOf('serviço') !== -1 || s.indexOf('revisão') !== -1 || s.indexOf('mão de obra') !== -1) return '<i class="fa-solid fa-wrench text-purple-500"></i>';
       return '<i class="fa-solid fa-box-open text-blue-500"></i>';
     }
 
     function renderCategories() {
-      const container = document.getElementById('categoryContainer');
-      container.innerHTML = CATEGORIES.map(cat => {
-        const count = cat === 'Todos' ? PRODUCTS.length : PRODUCTS.filter(p => p.category === cat).length;
-        const isSel = currentCategory === cat;
-        return `
-          <button
-            onclick="selectCategory('${cat}')"
-            class="px-4 py-2.5 rounded-2xl text-xs font-extrabold whitespace-nowrap transition-all shadow-xs flex items-center gap-2 border cursor-pointer ${
-              isSel ? 'bg-orange-500 text-white border-orange-500 shadow-md shadow-orange-500/25 scale-[1.02]' : 'bg-white text-slate-700 hover:bg-slate-50 border-slate-200'
-            }"
-          >
-            <span class="${isSel ? 'text-white' : ''}">${getCategoryFaIcon(cat)}</span>
-            <span>${cat}</span>
-            <span class="text-[10px] px-1.5 py-0.2 rounded-full ${isSel ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'}">${count}</span>
-          </button>
-        `;
-      }).join('');
+      var container = document.getElementById('categoryContainer');
+      if (!container) return;
+      var out = '';
+      for (var i = 0; i < CATEGORIES.length; i++) {
+        var cat = CATEGORIES[i];
+        var count = cat === 'Todos' ? PRODUCTS.length : PRODUCTS.filter(function(p) { return p.category === cat; }).length;
+        var isSel = currentCategory === cat;
+        var btnClass = isSel
+          ? 'px-4 py-2.5 rounded-2xl text-xs font-extrabold whitespace-nowrap transition-all shadow-xs flex items-center gap-2 border cursor-pointer bg-orange-500 text-white border-orange-500 shadow-md shadow-orange-500/25 scale-[1.02]'
+          : 'px-4 py-2.5 rounded-2xl text-xs font-extrabold whitespace-nowrap transition-all shadow-xs flex items-center gap-2 border cursor-pointer bg-white text-slate-700 hover:bg-slate-50 border-slate-200';
+        var badgeClass = isSel ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500';
+        var iconSpanClass = isSel ? 'text-white' : '';
+
+        out += '<button type="button" data-cat="' + encodeURIComponent(cat) + '" class="' + btnClass + '">' +
+          '<span class="' + iconSpanClass + ' pointer-events-none">' + getCategoryFaIcon(cat) + '</span>' +
+          '<span class="pointer-events-none">' + cat + '</span>' +
+          '<span class="pointer-events-none text-[10px] px-1.5 py-0.2 rounded-full ' + badgeClass + '">' + count + '</span>' +
+          '</button>';
+      }
+      container.innerHTML = out;
     }
 
     function selectCategory(cat) {
@@ -344,104 +345,115 @@
     }
 
     function getProductVectorBadge(name, cat) {
-      const str = (name + ' ' + (cat || '')).toLowerCase();
-      let icon = 'fa-solid fa-box-open';
-      let color = 'text-blue-500 bg-blue-50 border-blue-200';
+      var str = (String(name || '') + ' ' + String(cat || '')).toLowerCase();
+      var icon = 'fa-solid fa-box-open';
+      var color = 'text-blue-500 bg-blue-50 border-blue-200';
 
-      if (str.includes('óleo') || str.includes('oleo') || str.includes('lubrificante')) {
+      if (str.indexOf('óleo') !== -1 || str.indexOf('oleo') !== -1 || str.indexOf('lubrificante') !== -1) {
         icon = 'fa-solid fa-oil-can';
         color = 'text-amber-500 bg-amber-50 border-amber-200';
-      } else if (str.includes('capacete') || str.includes('viseira')) {
+      } else if (str.indexOf('capacete') !== -1 || str.indexOf('viseira') !== -1) {
         icon = 'fa-solid fa-helmet-safety';
         color = 'text-sky-500 bg-sky-50 border-sky-200';
-      } else if (str.includes('pneu') || str.includes('câmara')) {
+      } else if (str.indexOf('pneu') !== -1 || str.indexOf('câmara') !== -1) {
         icon = 'fa-solid fa-circle-notch';
         color = 'text-slate-700 bg-slate-100 border-slate-200';
-      } else if (str.includes('freio') || str.includes('pastilha') || str.includes('disco')) {
+      } else if (str.indexOf('freio') !== -1 || str.indexOf('pastilha') !== -1 || str.indexOf('disco') !== -1) {
         icon = 'fa-solid fa-circle-stop';
         color = 'text-rose-500 bg-rose-50 border-rose-200';
-      } else if (str.includes('relação') || str.includes('corrente') || str.includes('transmiss')) {
+      } else if (str.indexOf('relação') !== -1 || str.indexOf('corrente') !== -1 || str.indexOf('transmiss') !== -1) {
         icon = 'fa-solid fa-gears';
         color = 'text-orange-500 bg-orange-50 border-orange-200';
-      } else if (str.includes('bateria') || str.includes('vela')) {
+      } else if (str.indexOf('bateria') !== -1 || str.indexOf('vela') !== -1) {
         icon = 'fa-solid fa-bolt';
         color = 'text-yellow-500 bg-yellow-50 border-yellow-200';
-      } else if (str.includes('serviço') || str.includes('revisão') || str.includes('mão de obra')) {
+      } else if (str.indexOf('serviço') !== -1 || str.indexOf('revisão') !== -1 || str.indexOf('mão de obra') !== -1) {
         icon = 'fa-solid fa-wrench';
         color = 'text-purple-500 bg-purple-50 border-purple-200';
       }
 
-      return `
-        <div class="w-16 h-16 rounded-2xl border ${color} flex items-center justify-center text-2xl shadow-inner group-hover:scale-110 transition-transform duration-300">
-          <i class="${icon}"></i>
-        </div>
-      `;
+      return '<div class="w-16 h-16 rounded-2xl border ' + color + ' flex items-center justify-center text-2xl shadow-inner group-hover:scale-110 transition-transform duration-300">' +
+        '<i class="' + icon + '"></i>' +
+        '</div>';
     }
 
     function renderProducts() {
-      const grid = document.getElementById('productsGrid');
-      const filtered = PRODUCTS.filter(p => {
-        const matchesCat = currentCategory === 'Todos' || p.category === currentCategory;
-        const q = searchQuery.toLowerCase().trim();
-        const matchesSearch = !q || p.name.toLowerCase().includes(q) || (p.brand && p.brand.toLowerCase().includes(q));
+      var grid = document.getElementById('productsGrid');
+      if (!grid) return;
+      var q = searchQuery.toLowerCase().trim();
+      var filtered = PRODUCTS.filter(function(p) {
+        var matchesCat = currentCategory === 'Todos' || p.category === currentCategory;
+        var matchesSearch = !q || p.name.toLowerCase().indexOf(q) !== -1 || (p.brand && p.brand.toLowerCase().indexOf(q) !== -1);
         return matchesCat && matchesSearch;
       });
 
-      document.getElementById('productCount').innerText = filtered.length + ' itens';
+      var countEl = document.getElementById('productCount');
+      if (countEl) countEl.innerText = filtered.length + ' itens';
 
       if (filtered.length === 0) {
-        grid.innerHTML = `
-          <div class="col-span-full py-14 text-center text-slate-400 bg-white rounded-3xl border border-slate-200/80 shadow-xs p-6">
-            <i class="fa-solid fa-box-open text-3xl text-slate-300 mb-2"></i>
-            <p class="text-sm font-bold text-slate-800">Nenhum produto encontrado</p>
-          </div>
-        `;
+        grid.innerHTML = '<div class="col-span-full py-14 text-center text-slate-400 bg-white rounded-3xl border border-slate-200/80 shadow-xs p-6">' +
+          '<i class="fa-solid fa-box-open text-3xl text-slate-300 mb-2"></i>' +
+          '<p class="text-sm font-bold text-slate-800">Nenhum produto encontrado</p>' +
+          '</div>';
         return;
       }
 
-      grid.innerHTML = filtered.map(p => {
-        const inCart = cart[p.id]?.qty || 0;
-        return `
-          <div class="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
-            <div class="h-40 sm:h-44 bg-slate-50 flex items-center justify-center overflow-hidden relative border-b border-slate-100 p-2">
-              ${p.imageUrl ? `<img src="${p.imageUrl}" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" loading="lazy" />` : ''}
-              <div class="${p.imageUrl ? 'hidden' : 'flex'} items-center justify-center w-full h-full">
-                ${getProductVectorBadge(p.name, p.category)}
-              </div>
-              ${p.brand ? `<span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 bg-slate-900/85 rounded-lg text-[10px] font-black text-white uppercase">${p.brand}</span>` : ''}
-              ${inCart > 0 ? `<span class="absolute top-2.5 right-2.5 px-2.5 py-0.5 bg-emerald-600 text-white rounded-full text-[11px] font-black shadow-xs">${inCart} un</span>` : ''}
-            </div>
-            <div class="p-3.5 sm:p-4 flex flex-col justify-between flex-1 space-y-3">
-              <div>
-                <span class="text-[10px] font-extrabold uppercase text-orange-600 tracking-wider block mb-1">${p.category || 'Motopeças'}</span>
-                <h4 class="font-extrabold text-xs sm:text-sm text-slate-900 line-clamp-2 leading-snug min-h-[36px]">${p.name}</h4>
-                <div class="mt-2 flex items-baseline gap-1">
-                  <span class="text-orange-600 text-lg sm:text-xl font-black tracking-tight font-mono">${formatBRL(p.salePrice)}</span>
-                </div>
-                <span class="text-[10px] text-slate-400 font-medium block">ou até 3x de ${formatBRL(p.salePrice / 3)}</span>
-              </div>
-              ${inCart > 0 ? `
-                <div class="flex items-center justify-between bg-emerald-50 border border-emerald-200 rounded-2xl p-1 shadow-xs">
-                  <button onclick="updateQty('${p.id}', -1)" class="w-8 h-8 rounded-xl bg-white text-emerald-800 flex items-center justify-center font-black shadow-xs active:scale-90">-</button>
-                  <span class="text-xs font-black text-emerald-900">${inCart} no carrinho</span>
-                  <button onclick="updateQty('${p.id}', 1)" class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-black shadow-xs active:scale-90">+</button>
-                </div>
-              ` : `
-                <button onclick="addToCart('${p.id}')" class="w-full py-2.5 sm:py-3 rounded-2xl font-black text-xs bg-orange-500 hover:bg-orange-600 active:scale-[0.97] text-white shadow-md shadow-orange-500/20 transition flex items-center justify-center gap-1.5 cursor-pointer">
-                  <i class="fa-solid fa-plus text-[11px]"></i>
-                  <span>Adicionar ao Carrinho</span>
-                </button>
-              `}
-            </div>
-          </div>
-        `;
-      }).join('');
+      var out = '';
+      for (var i = 0; i < filtered.length; i++) {
+        var p = filtered[i];
+        var inCart = (cart[p.id] && cart[p.id].qty) || 0;
+        var imgBlock = '';
+        if (p.imageUrl) {
+          imgBlock = '<img src="' + p.imageUrl + '" alt="" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" loading="lazy" />' +
+            '<div class="hidden items-center justify-center w-full h-full">' + getProductVectorBadge(p.name, p.category) + '</div>';
+        } else {
+          imgBlock = '<div class="flex items-center justify-center w-full h-full">' + getProductVectorBadge(p.name, p.category) + '</div>';
+        }
+
+        var brandBadge = p.brand ? '<span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 bg-slate-900/85 rounded-lg text-[10px] font-black text-white uppercase">' + p.brand + '</span>' : '';
+        var cartBadge = inCart > 0 ? '<span class="absolute top-2.5 right-2.5 px-2.5 py-0.5 bg-emerald-600 text-white rounded-full text-[11px] font-black shadow-xs">' + inCart + ' un</span>' : '';
+
+        var btnAction = inCart > 0
+          ? '<div class="flex items-center justify-between bg-emerald-50 border border-emerald-200 rounded-2xl p-1 shadow-xs">' +
+            '<button type="button" data-qty-minus="' + p.id + '" class="w-8 h-8 rounded-xl bg-white text-emerald-800 flex items-center justify-center font-black shadow-xs active:scale-90 cursor-pointer">-</button>' +
+            '<span class="text-xs font-black text-emerald-900">' + inCart + ' no carrinho</span>' +
+            '<button type="button" data-qty-plus="' + p.id + '" class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-black shadow-xs active:scale-90 cursor-pointer">+</button>' +
+            '</div>'
+          : '<button type="button" data-add-id="' + p.id + '" class="w-full py-2.5 sm:py-3 rounded-2xl font-black text-xs bg-orange-500 hover:bg-orange-600 active:scale-[0.97] text-white shadow-md shadow-orange-500/20 transition flex items-center justify-center gap-1.5 cursor-pointer">' +
+            '<i class="fa-solid fa-plus text-[11px] pointer-events-none"></i>' +
+            '<span class="pointer-events-none">Adicionar ao Carrinho</span>' +
+            '</button>';
+
+        out += '<div class="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">' +
+          '<div class="h-40 sm:h-44 bg-slate-50 flex items-center justify-center overflow-hidden relative border-b border-slate-100 p-2">' +
+          imgBlock +
+          brandBadge +
+          cartBadge +
+          '</div>' +
+          '<div class="p-3.5 sm:p-4 flex flex-col justify-between flex-1 space-y-3">' +
+          '<div>' +
+          '<span class="text-[10px] font-extrabold uppercase text-orange-600 tracking-wider block mb-1">' + (p.category || 'Motopeças') + '</span>' +
+          '<h4 class="font-extrabold text-xs sm:text-sm text-slate-900 line-clamp-2 leading-snug min-h-[36px]">' + p.name + '</h4>' +
+          '<div class="mt-2 flex items-baseline gap-1">' +
+          '<span class="text-orange-600 text-lg sm:text-xl font-black tracking-tight font-mono">' + formatBRL(p.salePrice) + '</span>' +
+          '</div>' +
+          '<span class="text-[10px] text-slate-400 font-medium block">ou até 3x de ' + formatBRL(p.salePrice / 3) + '</span>' +
+          '</div>' +
+          btnAction +
+          '</div>' +
+          '</div>';
+      }
+
+      grid.innerHTML = out;
     }
 
     function addToCart(id) {
-      const prod = PRODUCTS.find(p => p.id === id);
+      var prod = null;
+      for (var i = 0; i < PRODUCTS.length; i++) {
+        if (PRODUCTS[i].id === id) { prod = PRODUCTS[i]; break; }
+      }
       if (!prod) return;
-      if (!cart[id]) cart[id] = { prod, qty: 0 };
+      if (!cart[id]) cart[id] = { prod: prod, qty: 0 };
       cart[id].qty++;
       updateCartUi();
       renderProducts();
@@ -456,54 +468,73 @@
     }
 
     function updateCartUi() {
-      const items = Object.values(cart);
-      const totalQty = items.reduce((acc, item) => acc + item.qty, 0);
-      const totalPrice = items.reduce((acc, item) => acc + item.prod.salePrice * item.qty, 0);
-
-      const floatingBar = document.getElementById('floatingBar');
-      const badge = document.getElementById('cartBadge');
-
-      if (totalQty > 0) {
-        floatingBar.classList.remove('hidden');
-        badge.innerText = totalQty;
-      } else {
-        floatingBar.classList.add('hidden');
+      var keys = Object.keys(cart);
+      var totalQty = 0;
+      var totalPrice = 0;
+      var items = [];
+      for (var i = 0; i < keys.length; i++) {
+        var item = cart[keys[i]];
+        totalQty += item.qty;
+        totalPrice += item.prod.salePrice * item.qty;
+        items.push(item);
       }
 
-      document.getElementById('cartCountText').innerText = totalQty + (totalQty === 1 ? ' item no carrinho' : ' itens no carrinho');
-      document.getElementById('drawerCountText').innerText = totalQty + ' itens selecionados';
-      document.getElementById('cartTotalText').innerText = formatBRL(totalPrice);
-      document.getElementById('drawerTotalText').innerText = formatBRL(totalPrice);
+      var floatingBar = document.getElementById('floatingBar');
+      var badge = document.getElementById('cartBadge');
 
-      const listContainer = document.getElementById('cartItemsList');
+      if (floatingBar && badge) {
+        if (totalQty > 0) {
+          floatingBar.classList.remove('hidden');
+          badge.innerText = totalQty;
+        } else {
+          floatingBar.classList.add('hidden');
+        }
+      }
+
+      var countEl = document.getElementById('cartCountText');
+      if (countEl) countEl.innerText = totalQty + (totalQty === 1 ? ' item no carrinho' : ' itens no carrinho');
+
+      var drawerCount = document.getElementById('drawerCountText');
+      if (drawerCount) drawerCount.innerText = totalQty + ' itens selecionados';
+
+      var cartTotal = document.getElementById('cartTotalText');
+      if (cartTotal) cartTotal.innerText = formatBRL(totalPrice);
+
+      var drawerTotal = document.getElementById('drawerTotalText');
+      if (drawerTotal) drawerTotal.innerText = formatBRL(totalPrice);
+
+      var listContainer = document.getElementById('cartItemsList');
+      if (!listContainer) return;
       if (items.length === 0) {
-        listContainer.innerHTML = `
-          <div class="h-full flex flex-col items-center justify-center text-slate-400 text-center py-16">
-            <i class="fa-solid fa-cart-shopping text-4xl text-slate-200 mb-2"></i>
-            <p class="font-bold text-sm text-slate-800">Seu carrinho está vazio</p>
-            <p class="text-xs text-slate-400 mt-0.5">Adicione peças da vitrine para fazer o pedido.</p>
-          </div>
-        `;
+        listContainer.innerHTML = '<div class="h-full flex flex-col items-center justify-center text-slate-400 text-center py-16">' +
+          '<i class="fa-solid fa-cart-shopping text-4xl text-slate-200 mb-2"></i>' +
+          '<p class="font-bold text-sm text-slate-800">Seu carrinho está vazio</p>' +
+          '<p class="text-xs text-slate-400 mt-0.5">Adicione peças da vitrine para fazer o pedido.</p>' +
+          '</div>';
       } else {
-        listContainer.innerHTML = items.map(({ prod, qty }) => `
-          <div class="py-3 flex items-center justify-between gap-3">
-            <div class="flex-1 min-w-0">
-              <p class="font-bold text-xs text-slate-900 truncate">${prod.name}</p>
-              <p class="text-[11px] text-slate-500 font-mono">${formatBRL(prod.salePrice)} cada</p>
-            </div>
-            <div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-lg border border-slate-200">
-              <button onclick="updateQty('${prod.id}', -1)" class="w-6 h-6 flex items-center justify-center text-slate-700 hover:bg-white rounded font-bold">-</button>
-              <span class="w-6 text-center text-xs font-black text-slate-900">${qty}</span>
-              <button onclick="updateQty('${prod.id}', 1)" class="w-6 h-6 flex items-center justify-center text-slate-700 hover:bg-white rounded font-bold">+</button>
-            </div>
-            <span class="font-black text-xs text-orange-600 w-16 text-right font-mono">${formatBRL(prod.salePrice * qty)}</span>
-          </div>
-        `).join('');
+        var listHtml = '';
+        for (var j = 0; j < items.length; j++) {
+          var it = items[j];
+          listHtml += '<div class="py-3 flex items-center justify-between gap-3">' +
+            '<div class="flex-1 min-w-0">' +
+            '<p class="font-bold text-xs text-slate-900 truncate">' + it.prod.name + '</p>' +
+            '<p class="text-[11px] text-slate-500 font-mono">' + formatBRL(it.prod.salePrice) + ' cada</p>' +
+            '</div>' +
+            '<div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-lg border border-slate-200">' +
+            '<button type="button" data-cart-minus="' + it.prod.id + '" class="w-6 h-6 flex items-center justify-center text-slate-700 hover:bg-white rounded font-bold cursor-pointer">-</button>' +
+            '<span class="w-6 text-center text-xs font-black text-slate-900">' + it.qty + '</span>' +
+            '<button type="button" data-cart-plus="' + it.prod.id + '" class="w-6 h-6 flex items-center justify-center text-slate-700 hover:bg-white rounded font-bold cursor-pointer">+</button>' +
+            '</div>' +
+            '<span class="font-black text-xs text-orange-600 w-16 text-right font-mono">' + formatBRL(it.prod.salePrice * it.qty) + '</span>' +
+            '</div>';
+        }
+        listContainer.innerHTML = listHtml;
       }
     }
 
     function toggleCartDrawer(open) {
-      const modal = document.getElementById('cartModal');
+      var modal = document.getElementById('cartModal');
+      if (!modal) return;
       if (open) {
         modal.classList.remove('hidden');
         modal.classList.add('flex');
@@ -515,67 +546,127 @@
 
     function setDelivery(type) {
       deliveryMode = type;
-      document.getElementById('btnDelivery').className = type === 'DELIVERY'
-        ? 'py-2.5 rounded-xl text-xs font-extrabold border bg-orange-500 text-white border-orange-500 shadow-xs flex items-center justify-center gap-1.5 cursor-pointer'
-        : 'py-2.5 rounded-xl text-xs font-extrabold border bg-white text-slate-700 border-slate-200 flex items-center justify-center gap-1.5 cursor-pointer';
-      document.getElementById('btnPickup').className = type === 'PICKUP'
-        ? 'py-2.5 rounded-xl text-xs font-extrabold border bg-orange-500 text-white border-orange-500 shadow-xs flex items-center justify-center gap-1.5 cursor-pointer'
-        : 'py-2.5 rounded-xl text-xs font-extrabold border bg-white text-slate-700 border-slate-200 flex items-center justify-center gap-1.5 cursor-pointer';
+      var btnD = document.getElementById('btnDelivery');
+      var btnP = document.getElementById('btnPickup');
+      if (btnD) {
+        btnD.className = type === 'DELIVERY'
+          ? 'py-2.5 rounded-xl text-xs font-extrabold border bg-orange-500 text-white border-orange-500 shadow-xs flex items-center justify-center gap-1.5 cursor-pointer'
+          : 'py-2.5 rounded-xl text-xs font-extrabold border bg-white text-slate-700 border-slate-200 flex items-center justify-center gap-1.5 cursor-pointer';
+      }
+      if (btnP) {
+        btnP.className = type === 'PICKUP'
+          ? 'py-2.5 rounded-xl text-xs font-extrabold border bg-orange-500 text-white border-orange-500 shadow-xs flex items-center justify-center gap-1.5 cursor-pointer'
+          : 'py-2.5 rounded-xl text-xs font-extrabold border bg-white text-slate-700 border-slate-200 flex items-center justify-center gap-1.5 cursor-pointer';
+      }
     }
 
     function setPayment(pay) {
       paymentMode = pay;
-      ['PIX', 'Card', 'Cash'].forEach(p => {
-        const el = document.getElementById('pay' + p);
-        const name = p === 'PIX' ? 'PIX' : p === 'Card' ? 'Cartão' : 'Dinheiro';
+      var types = ['PIX', 'Card', 'Cash'];
+      for (var i = 0; i < types.length; i++) {
+        var p = types[i];
+        var el = document.getElementById('pay' + p);
+        if (!el) continue;
+        var name = p === 'PIX' ? 'PIX' : p === 'Card' ? 'Cartão' : 'Dinheiro';
         el.className = paymentMode === name
           ? 'py-1.5 rounded-lg font-bold border bg-slate-900 text-white border-slate-900 text-[11px] flex items-center justify-center gap-1'
           : 'py-1.5 rounded-lg font-bold border bg-white text-slate-700 border-slate-200 text-[11px] flex items-center justify-center gap-1';
-      });
+      }
     }
 
     function sendWhatsAppOrder() {
-      const items = Object.values(cart);
-      if (items.length === 0) {
+      var keys = Object.keys(cart);
+      if (keys.length === 0) {
         alert('Adicione pelo menos um item ao seu carrinho.');
         return;
       }
 
-      const custName = document.getElementById('customerNameInput').value.trim();
-      const greeting = custName ? `Olá, meu nome é *${custName}*.
+      var items = [];
+      var totalPrice = 0;
+      for (var i = 0; i < keys.length; i++) {
+        var it = cart[keys[i]];
+        items.push(it);
+        totalPrice += it.prod.salePrice * it.qty;
+      }
 
-` : 'Olá! 👋
+      var nameInput = document.getElementById('customerNameInput');
+      var custName = nameInput ? nameInput.value.trim() : '';
+      var greeting = custName ? 'Olá, meu nome é *' + custName + '*.\n\n' : 'Olá! 👋\n\n';
+      var itemsText = '';
+      for (var j = 0; j < items.length; j++) {
+        itemsText += '• *' + items[j].qty + 'x* ' + items[j].prod.name + ' — ' + formatBRL(items[j].prod.salePrice * items[j].qty) + '\n';
+      }
+      var deliveryText = deliveryMode === 'DELIVERY' ? '🛵 *Tipo:* Entrega a domicílio' : '🏬 *Tipo:* Retirada na loja';
 
-';
-      const itemsText = items.map(({ prod, qty }) => `• *${qty}x* ${prod.name} — ${formatBRL(prod.salePrice * qty)}`).join('\n');
-      const totalPrice = items.reduce((acc, item) => acc + item.prod.salePrice * item.qty, 0);
-      const deliveryText = deliveryMode === 'DELIVERY' ? '🛵 *Tipo:* Entrega a domicílio' : '🏬 *Tipo:* Retirada na loja';
-
-      const message = `${greeting}Gostaria de fazer o pedido destes itens da vitrine online:
-
-${itemsText}
-
-*Total: ${formatBRL(totalPrice)}*
-${deliveryText}
-💳 *Forma pretendida:* ${paymentMode}
-
-Podemos confirmar o pedido?`;
+      var message = greeting + 'Gostaria de fazer o pedido destes itens da vitrine online:\n\n' + itemsText + '\n*Total: ' + formatBRL(totalPrice) + '*\n' + deliveryText + '\n💳 *Forma pretendida:* ' + paymentMode + '\n\nPodemos confirmar o pedido?';
       
-      let targetUrl = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(message);
+      var targetUrl = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(message);
       if (STORE_WHATSAPP) {
-        const fullPhone = STORE_WHATSAPP.length <= 11 ? '55' + STORE_WHATSAPP : STORE_WHATSAPP;
+        var fullPhone = STORE_WHATSAPP.length <= 11 ? '55' + STORE_WHATSAPP : STORE_WHATSAPP;
         targetUrl = 'https://api.whatsapp.com/send?phone=' + fullPhone + '&text=' + encodeURIComponent(message);
       }
       window.open(targetUrl, '_blank');
     }
 
-    document.getElementById('searchInput').addEventListener('input', (e) => {
-      searchQuery = e.target.value;
-      renderProducts();
-    });
+    // Attach Event Listeners via Event Delegation
+    var catContainer = document.getElementById('categoryContainer');
+    if (catContainer) {
+      catContainer.addEventListener('click', function(e) {
+        var btn = e.target.closest('[data-cat]');
+        if (btn) {
+          var rawCat = btn.getAttribute('data-cat');
+          selectCategory(decodeURIComponent(rawCat));
+        }
+      });
+    }
+
+    var gridContainer = document.getElementById('productsGrid');
+    if (gridContainer) {
+      gridContainer.addEventListener('click', function(e) {
+        var addBtn = e.target.closest('[data-add-id]');
+        if (addBtn) {
+          addToCart(addBtn.getAttribute('data-add-id'));
+          return;
+        }
+        var minusBtn = e.target.closest('[data-qty-minus]');
+        if (minusBtn) {
+          updateQty(minusBtn.getAttribute('data-qty-minus'), -1);
+          return;
+        }
+        var plusBtn = e.target.closest('[data-qty-plus]');
+        if (plusBtn) {
+          updateQty(plusBtn.getAttribute('data-qty-plus'), 1);
+          return;
+        }
+      });
+    }
+
+    var cartListContainer = document.getElementById('cartItemsList');
+    if (cartListContainer) {
+      cartListContainer.addEventListener('click', function(e) {
+        var minusBtn = e.target.closest('[data-cart-minus]');
+        if (minusBtn) {
+          updateQty(minusBtn.getAttribute('data-cart-minus'), -1);
+          return;
+        }
+        var plusBtn = e.target.closest('[data-cart-plus]');
+        if (plusBtn) {
+          updateQty(plusBtn.getAttribute('data-cart-plus'), 1);
+          return;
+        }
+      });
+    }
+
+    var searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', function(e) {
+        searchQuery = e.target.value;
+        renderProducts();
+      });
+    }
 
     renderCategories();
     renderProducts();
-  </script>
+    </script>
 </body>
 </html>
